@@ -36,38 +36,35 @@
 
     /* ── HERO ── */
     #hero{position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center}
-    .hero-vid{position:absolute;inset:0;z-index:0}
-    .hero-vid video{width:100%;height:100%;object-fit:cover}
-    .hero-vid::before{content:'';position:absolute;inset:0;z-index:1;
-      background:radial-gradient(ellipse 70% 60% at 65% 45%,rgba(255,107,0,.2) 0%,transparent 65%),
-                radial-gradient(ellipse 50% 50% at 20% 80%,rgba(255,140,51,.1) 0%,transparent 60%),
-                linear-gradient(140deg,#0d0d0d 0%,#1a0e04 45%,#0a0804 100%)}
-    .orb{position:absolute;border-radius:50%;filter:blur(90px);animation:orbF 9s ease-in-out infinite alternate;z-index:0}
-    .orb1{width:520px;height:520px;background:rgba(255,107,0,.1);top:-8%;right:8%}
-    .orb2{width:320px;height:320px;background:rgba(255,179,71,.07);bottom:12%;left:18%;animation-delay:-4s}
+    .hero-vid{position:absolute;inset:0;z-index:0;background:linear-gradient(140deg,#0d0d0d 0%,#1a0e04 45%,#0a0804 100%)}
+    .hero-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);animation:orbF 9s ease-in-out infinite alternate;z-index:2}
+    .orb1{width:520px;height:520px;background:rgba(255,107,0,.08);top:-8%;right:8%}
+    .orb2{width:320px;height:320px;background:rgba(255,179,71,.06);bottom:12%;left:18%;animation-delay:-4s}
     @keyframes orbF{from{transform:translate(0,0) scale(1)}to{transform:translate(28px,-18px) scale(1.08)}}
-    .hero-ov{position:absolute;inset:0;z-index:1;
-      background:linear-gradient(110deg,rgba(8,5,2,.88) 0%,rgba(8,5,2,.55) 45%,rgba(8,5,2,.15) 100%)}
-    .hero-ov::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to top,var(--black),transparent)}
-    .hero-cnt{position:relative;z-index:2;padding:0 5%;padding-left:max(5%,40px);max-width:780px;animation:fadeUp 1s ease both}
+    /* Overlay exact ca ridelikeachampion: dark gradient din stânga, transparent spre dreapta */
+    .hero-ov{position:absolute;inset:0;z-index:3;
+      background:linear-gradient(110deg,rgba(5,3,1,.85) 0%,rgba(5,3,1,.52) 42%,rgba(5,3,1,.12) 100%)}
+    .hero-ov::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--black),transparent)}
+    .hero-cnt{position:relative;z-index:4;padding:0 5%;padding-left:max(5%,40px);max-width:780px;animation:fadeUp 1s ease both}
     @keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
     .hero-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,107,0,.14);border:1px solid rgba(255,107,0,.38);color:var(--amber);font-family:var(--font-h);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem 1rem;border-radius:50px;margin-bottom:1.8rem;animation:fadeUp .9s .1s ease both}
     .hero-pill::before{content:'🏍️';font-size:.95rem}
     .h-title{font-family:var(--font-h);font-weight:900;font-size:clamp(3rem,7.5vw,6.8rem);line-height:1.0;letter-spacing:-.03em;margin-bottom:1.2rem;animation:fadeUp .9s .2s ease both}
     .h-title .grad{background:linear-gradient(90deg,var(--orange),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .h-sub{font-size:clamp(.95rem,1.8vw,1.18rem);color:rgba(255,255,255,.75);max-width:500px;line-height:1.76;margin-bottom:2.5rem;animation:fadeUp .9s .3s ease both}
+    .h-sub{font-size:clamp(.95rem,1.8vw,1.18rem);color:rgba(255,255,255,.8);max-width:500px;line-height:1.76;margin-bottom:2.5rem;animation:fadeUp .9s .3s ease both}
     .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .9s .4s ease both}
     .btn-fill{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--orange),#FF8C00);color:#fff;font-family:var(--font-h);font-weight:700;font-size:.98rem;padding:.92rem 2.2rem;border-radius:50px;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(255,107,0,.4);transition:transform .25s,box-shadow .25s}
     .btn-fill:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(255,107,0,.55)}
-    .btn-ghost{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:var(--font-h);font-weight:600;font-size:.98rem;padding:.92rem 2.2rem;border-radius:50px;cursor:pointer;transition:background .25s,border-color .25s;backdrop-filter:blur(10px)}
-    .btn-ghost:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.42)}
-    .hero-vid-badge{position:absolute;bottom:2.5rem;right:5%;z-index:2;display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:.7rem 1.2rem;border-radius:50px;backdrop-filter:blur(12px);animation:fadeUp .9s .65s ease both}
+    .btn-ghost{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:var(--font-h);font-weight:600;font-size:.98rem;padding:.92rem 2.2rem;border-radius:50px;cursor:pointer;transition:background .25s,border-color .25s;backdrop-filter:blur(10px)}
+    .btn-ghost:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5)}
+    .hero-vid-badge{position:absolute;bottom:2.5rem;right:5%;z-index:4;display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:.7rem 1.2rem;border-radius:50px;backdrop-filter:blur(12px);animation:fadeUp .9s .65s ease both}
     .pulse-btn{width:36px;height:36px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:.85rem;position:relative}
     .pulse-btn::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(255,107,0,.5);animation:pr 2s infinite}
     @keyframes pr{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.5);opacity:0}}
     .vb-txt{font-family:var(--font-h);font-weight:600;font-size:.85rem}
     .vb-sub{font-size:.74rem;color:var(--grey)}
-    .scroll-ind{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.42;animation:fadeUp .9s .85s ease both}
+    .scroll-ind{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.42;animation:fadeUp .9s .85s ease both}
     .scroll-ind span{font-family:var(--font-h);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase}
     .sdot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:sdotB 1.8s infinite}
     @keyframes sdotB{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
@@ -312,25 +309,17 @@
 <section id="hero">
   <div class="hero-vid">
     <!--
-    ════════════════════════════════════════════
-    VIDEO HERO — Adaugă videoclipul tău aici!
-
-    OPȚIUNEA 1 — Fișier .mp4 local:
-    Copiază fișierul video în același folder cu index.html
-    și decomentează (șterge marcajele !) linia de mai jos,
-    înlocuind "hero.mp4" cu numele fișierului tău:
-
-    <video autoplay muted loop playsinline preload="auto" src="hero.mp4"></video>
-
-    OPȚIUNEA 2 — YouTube (fără butoane):
-    Înlocuiește YOUTUBE_ID cu ID-ul videoclipului tău
-    (ex: dacă linkul e youtube.com/watch?v=AbCdEfGhIjK, ID-ul e AbCdEfGhIjK)
-
-    <iframe src="https://www.youtube.com/embed/YOUTUBE_ID?autoplay=1&mute=1&loop=1&controls=0&playlist=YOUTUBE_ID&showinfo=0&rel=0"
-      frameborder="0" allow="autoplay;encrypted-media" allowfullscreen
-      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none"></iframe>
-    ════════════════════════════════════════════
+    ══════════════════════════════════════════════
+    VIDEOCLIPUL TĂU: înlocuiește src="video-poligon-motoskill.mp4"
+    cu calea către fișierul tău video.
+    Pune fișierul .mp4 în același folder cu index.html
+    ══════════════════════════════════════════════
     -->
+    <video
+      autoplay muted loop playsinline preload="auto"
+      src="hero.mp4"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;"
+    ></video>
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
   </div>
@@ -722,6 +711,14 @@
   function cmn(){document.getElementById('mnav').classList.remove('open')}
   /* Reviews */
   function sr(d){document.getElementById('rt').scrollBy({left:d*390,behavior:'smooth'})}
+  /* Video hero: dacă video-ul nu se poate încărca, ascunde elementul ca să rămână fundalul animat */
+  const hv = document.querySelector('.hero-vid video');
+  if(hv){
+    hv.addEventListener('error', ()=>{ hv.style.display='none'; });
+    hv.addEventListener('canplay', ()=>{ hv.style.opacity='1'; });
+    hv.style.opacity='0';
+    hv.style.transition='opacity 1.2s ease';
+  }
   /* Edit panel */
   const F={
     'pill':'e-pill','t1':'e-t1','t2':'e-t2','t3':'e-t3','sub':'e-sub',
