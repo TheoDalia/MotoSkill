@@ -3,1607 +3,772 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MotoSkill – Școala Moto București</title>
+  <title>MotoSkill – Școala Moto București · Sector 2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ─── VARIABLES ─── */
     :root {
-      --black:   #0a0a0a;
-      --dark:    #111111;
-      --dark2:   #1a1a1a;
-      --dark3:   #222222;
-      --orange:  #f5a623;
-      --orange2: #e8960f;
-      --white:   #ffffff;
-      --grey:    #8a8a8a;
-      --grey2:   #555555;
-      --font-head: 'Barlow Condensed', sans-serif;
-      --font-body: 'Barlow', sans-serif;
+      --black:#0d0d0d; --dark:#141414; --dark2:#1c1c1e; --dark3:#2a2a2e;
+      --orange:#FF6B00; --orange2:#FF8C33; --og:rgba(255,107,0,0.16);
+      --amber:#FFB347; --white:#ffffff; --grey:#9a9a9a; --grey2:#555;
+      --warm:#1a1208; --font-h:'Outfit',sans-serif; --font-b:'DM Sans',sans-serif;
+      --r:14px; --rs:8px;
     }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:#fff;font-family:var(--font-b);overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;object-fit:cover}
 
-    /* ─── RESET ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font-body);
-      font-weight: 400;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    /* ── NAVBAR ── */
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:74px;transition:background .4s,box-shadow .4s}
+    #nav.scrolled{background:rgba(13,13,13,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+    .logo{font-family:var(--font-h);font-weight:900;font-size:1.8rem;letter-spacing:-.02em}
+    .logo em{color:var(--orange);font-style:normal}
+    nav{display:flex;align-items:center;gap:1.8rem}
+    nav a{font-family:var(--font-h);font-weight:500;font-size:.95rem;color:rgba(255,255,255,.72);transition:color .2s}
+    nav a:hover{color:#fff}
+    .nav-cta{background:var(--orange)!important;color:#fff!important;padding:.5rem 1.4rem;border-radius:50px;font-weight:700!important;box-shadow:0 4px 18px rgba(255,107,0,.35);transition:transform .2s,box-shadow .2s!important}
+    .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,107,0,.55)!important}
+    .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .ham span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
 
-    /* ─── NAVBAR ─── */
-    #navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-      height: 72px;
-      transition: background 0.4s, box-shadow 0.4s;
-    }
-    #navbar.scrolled {
-      background: rgba(10,10,10,0.96);
-      box-shadow: 0 2px 30px rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-    }
-    .logo {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 2rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .logo span { color: var(--orange); }
-    nav { display: flex; align-items: center; gap: 2.2rem; }
-    nav a {
-      font-family: var(--font-head);
-      font-weight: 600;
-      font-size: 1.05rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--grey);
-      transition: color 0.25s;
-      position: relative;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 2px;
-      background: var(--orange);
-      transition: width 0.3s;
-    }
-    nav a:hover { color: var(--white); }
-    nav a:hover::after { width: 100%; }
-    .nav-cta {
-      background: var(--orange);
-      color: var(--black) !important;
-      padding: 0.55rem 1.4rem;
-      border-radius: 2px;
-      font-weight: 700 !important;
-      transition: background 0.25s !important;
-    }
-    .nav-cta:hover { background: var(--orange2) !important; }
-    .nav-cta::after { display: none !important; }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px; height: 2px;
-      background: var(--white);
-      transition: all 0.3s;
-      border-radius: 2px;
-    }
+    /* ── HERO ── */
+    #hero{position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center}
+    .hero-vid{position:absolute;inset:0;z-index:0}
+    .hero-vid video{width:100%;height:100%;object-fit:cover}
+    .hero-vid::before{content:'';position:absolute;inset:0;z-index:1;
+      background:radial-gradient(ellipse 70% 60% at 65% 45%,rgba(255,107,0,.2) 0%,transparent 65%),
+                radial-gradient(ellipse 50% 50% at 20% 80%,rgba(255,140,51,.1) 0%,transparent 60%),
+                linear-gradient(140deg,#0d0d0d 0%,#1a0e04 45%,#0a0804 100%)}
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);animation:orbF 9s ease-in-out infinite alternate;z-index:0}
+    .orb1{width:520px;height:520px;background:rgba(255,107,0,.1);top:-8%;right:8%}
+    .orb2{width:320px;height:320px;background:rgba(255,179,71,.07);bottom:12%;left:18%;animation-delay:-4s}
+    @keyframes orbF{from{transform:translate(0,0) scale(1)}to{transform:translate(28px,-18px) scale(1.08)}}
+    .hero-ov{position:absolute;inset:0;z-index:1;
+      background:linear-gradient(110deg,rgba(8,5,2,.88) 0%,rgba(8,5,2,.55) 45%,rgba(8,5,2,.15) 100%)}
+    .hero-ov::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to top,var(--black),transparent)}
+    .hero-cnt{position:relative;z-index:2;padding:0 5%;padding-left:max(5%,40px);max-width:780px;animation:fadeUp 1s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+    .hero-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,107,0,.14);border:1px solid rgba(255,107,0,.38);color:var(--amber);font-family:var(--font-h);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem 1rem;border-radius:50px;margin-bottom:1.8rem;animation:fadeUp .9s .1s ease both}
+    .hero-pill::before{content:'🏍️';font-size:.95rem}
+    .h-title{font-family:var(--font-h);font-weight:900;font-size:clamp(3rem,7.5vw,6.8rem);line-height:1.0;letter-spacing:-.03em;margin-bottom:1.2rem;animation:fadeUp .9s .2s ease both}
+    .h-title .grad{background:linear-gradient(90deg,var(--orange),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .h-sub{font-size:clamp(.95rem,1.8vw,1.18rem);color:rgba(255,255,255,.75);max-width:500px;line-height:1.76;margin-bottom:2.5rem;animation:fadeUp .9s .3s ease both}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .9s .4s ease both}
+    .btn-fill{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--orange),#FF8C00);color:#fff;font-family:var(--font-h);font-weight:700;font-size:.98rem;padding:.92rem 2.2rem;border-radius:50px;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(255,107,0,.4);transition:transform .25s,box-shadow .25s}
+    .btn-fill:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(255,107,0,.55)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:var(--font-h);font-weight:600;font-size:.98rem;padding:.92rem 2.2rem;border-radius:50px;cursor:pointer;transition:background .25s,border-color .25s;backdrop-filter:blur(10px)}
+    .btn-ghost:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.42)}
+    .hero-vid-badge{position:absolute;bottom:2.5rem;right:5%;z-index:2;display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:.7rem 1.2rem;border-radius:50px;backdrop-filter:blur(12px);animation:fadeUp .9s .65s ease both}
+    .pulse-btn{width:36px;height:36px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:.85rem;position:relative}
+    .pulse-btn::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(255,107,0,.5);animation:pr 2s infinite}
+    @keyframes pr{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+    .vb-txt{font-family:var(--font-h);font-weight:600;font-size:.85rem}
+    .vb-sub{font-size:.74rem;color:var(--grey)}
+    .scroll-ind{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.42;animation:fadeUp .9s .85s ease both}
+    .scroll-ind span{font-family:var(--font-h);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase}
+    .sdot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:sdotB 1.8s infinite}
+    @keyframes sdotB{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 
-    /* ─── HERO ─── */
-    #hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 600px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-video-wrap {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero-video-wrap video {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-    .hero-fallback {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Animated moto silhouette for fallback */
-    .hero-fallback svg {
-      opacity: 0.12;
-      width: 70%;
-      max-width: 700px;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(0,0,0,0.75) 0%,
-        rgba(0,0,0,0.45) 60%,
-        rgba(0,0,0,0.2) 100%
-      );
-      z-index: 1;
-    }
-    .hero-overlay::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 220px;
-      background: linear-gradient(to top, var(--black), transparent);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: left;
-      padding: 0 5%;
-      max-width: 900px;
-      width: 100%;
-      margin-left: 5%;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: var(--orange);
-      color: var(--black);
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.9rem;
-      border-radius: 1px;
-      margin-bottom: 1.5rem;
-      animation: fadeSlideUp 0.8s ease both;
-    }
-    .hero-title {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: clamp(3.5rem, 8vw, 7.5rem);
-      line-height: 0.9;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      animation: fadeSlideUp 0.8s 0.15s ease both;
-    }
-    .hero-title em {
-      color: var(--orange);
-      font-style: normal;
-      display: block;
-    }
-    .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      font-weight: 300;
-      color: rgba(255,255,255,0.8);
-      max-width: 520px;
-      margin: 1.5rem 0 2.5rem;
-      line-height: 1.7;
-      animation: fadeSlideUp 0.8s 0.3s ease both;
-    }
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      animation: fadeSlideUp 0.8s 0.45s ease both;
-    }
-    .btn-primary {
-      background: var(--orange);
-      color: var(--black);
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 1rem 2.5rem;
-      border: none;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.2s;
-      display: inline-block;
-    }
-    .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--white);
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 1rem 2.5rem;
-      border: 2px solid rgba(255,255,255,0.4);
-      border-radius: 2px;
-      cursor: pointer;
-      transition: border-color 0.25s, color 0.25s;
-      display: inline-block;
-    }
-    .btn-secondary:hover { border-color: var(--white); }
-    .hero-scroll {
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0.5;
-      animation: fadeSlideUp 1s 0.8s ease both;
-    }
-    .hero-scroll span {
-      font-family: var(--font-head);
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, var(--white), transparent);
-      animation: scrollPulse 2s infinite;
-    }
+    /* ── STATS ── */
+    #stats{background:linear-gradient(135deg,var(--orange) 0%,#FF8C00 50%,var(--amber) 100%);padding:2.2rem 5%;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:.5rem}
+    .sitem{padding:.5rem 1rem}
+    .snum{font-family:var(--font-h);font-weight:900;font-size:2.6rem;color:#fff;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.2)}
+    .slbl{font-family:var(--font-h);font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:.2rem}
 
-    /* ─── STATS BAR ─── */
-    #stats {
-      background: var(--orange);
-      padding: 2rem 5%;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      text-align: center;
-    }
-    .stat-item { padding: 0.5rem; }
-    .stat-num {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 2.8rem;
-      color: var(--black);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: var(--font-head);
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,0.65);
-      margin-top: 0.25rem;
-    }
-    .stat-divider {
-      width: 1px;
-      background: rgba(0,0,0,0.2);
-      margin: 0.5rem 0;
-    }
+    /* ── SHARED ── */
+    section{padding:6rem 5%}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-h);font-weight:700;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:.9rem}
+    .eyebrow::before{content:'';display:block;width:22px;height:2px;background:var(--orange);border-radius:2px}
+    .stitle{font-family:var(--font-h);font-weight:900;font-size:clamp(2.1rem,4.5vw,3.7rem);letter-spacing:-.02em;line-height:1.08;margin-bottom:1.2rem}
+    .sbody{font-size:1.05rem;color:rgba(255,255,255,.62);max-width:560px;line-height:1.8}
+    .og{color:var(--orange)}
 
-    /* ─── SECTIONS SHARED ─── */
-    section { padding: 6rem 5%; }
-    .section-tag {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .section-title {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 0.95;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.5rem;
-    }
-    .section-body {
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.7);
-      max-width: 560px;
-      line-height: 1.8;
-    }
+    /* ── DESPRE ── */
+    #despre{background:var(--dark);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .dp-vis{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--dark2)}
+    .dp-vis-bg{width:100%;height:100%;background:linear-gradient(135deg,#1f1208,#2a1600,#120a00);display:flex;align-items:center;justify-content:center;position:relative}
+    .dp-vis-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(255,107,0,.14),transparent)}
+    .dp-big{font-family:var(--font-h);font-weight:900;font-size:7rem;color:rgba(255,255,255,.04);letter-spacing:-.05em;line-height:.85;text-align:center;user-select:none}
+    .dp-badge{position:absolute;bottom:2rem;left:2rem;background:linear-gradient(135deg,var(--orange),#FF8C00);border-radius:var(--rs);padding:1.2rem 1.5rem;box-shadow:0 12px 38px rgba(255,107,0,.4)}
+    .dp-badge-n{font-family:var(--font-h);font-weight:900;font-size:2.8rem;line-height:1;color:#fff}
+    .dp-badge-t{font-family:var(--font-h);font-weight:700;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+    .dp-badge2{position:absolute;top:2rem;right:2rem;background:rgba(13,13,13,.85);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);padding:.75rem 1.2rem}
+    .dp-badge2-t{font-family:var(--font-h);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
+    .feats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+    .fc{background:var(--dark2);border:1px solid var(--dark3);border-radius:var(--r);padding:1.3rem;transition:border-color .25s,transform .25s,box-shadow .25s}
+    .fc:hover{border-color:rgba(255,107,0,.38);transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,107,0,.1)}
+    .fc-icon{width:40px;height:40px;border-radius:10px;background:var(--og);border:1px solid rgba(255,107,0,.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:.8rem}
+    .fc-title{font-family:var(--font-h);font-weight:700;font-size:.93rem;margin-bottom:.3rem}
+    .fc-desc{font-size:.81rem;color:var(--grey);line-height:1.6}
 
-    /* ─── DESPRE NOI ─── */
-    #despre {
-      background: var(--dark);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .despre-visual {
-      position: relative;
-      border-radius: 3px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: var(--dark2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .despre-visual-inner {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #1a1208, #0f0f0f);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-head);
-      color: rgba(255,255,255,0.07);
-      font-size: 8rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -0.05em;
-      position: relative;
-      overflow: hidden;
-    }
-    .despre-visual-inner::before {
-      content: 'MOTO\ASKILL';
-      position: absolute;
-      white-space: pre;
-      font-size: 5rem;
-      opacity: 0.04;
-      letter-spacing: 0.02em;
-    }
-    .despre-accent-box {
-      position: absolute;
-      bottom: 2rem; right: 2rem;
-      background: var(--orange);
-      color: var(--black);
-      padding: 1.5rem;
-      text-align: center;
-      min-width: 130px;
-    }
-    .despre-accent-num {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 3rem;
-      line-height: 1;
-      display: block;
-    }
-    .despre-accent-txt {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .despre-features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-top: 2.5rem;
-    }
-    .feature-card {
-      background: var(--dark2);
-      border: 1px solid var(--dark3);
-      border-left: 3px solid var(--orange);
-      padding: 1.2rem;
-      border-radius: 2px;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .feature-card:hover { border-left-color: var(--orange2); transform: translateY(-3px); }
-    .feature-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
-    .feature-title {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 0.3rem;
-    }
-    .feature-desc { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+    /* ── BANNER GRATUIT ── */
+    #bfree{background:linear-gradient(110deg,#200e00,#2d1500,#1a0900);border-top:1px solid rgba(255,107,0,.22);border-bottom:1px solid rgba(255,107,0,.22);padding:2.2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;position:relative;overflow:hidden}
+    #bfree::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,107,0,.07);filter:blur(40px)}
+    .bf-left{display:flex;align-items:center;gap:1.5rem}
+    .bf-icon{width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--orange),#FF8C00);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;box-shadow:0 8px 24px rgba(255,107,0,.4)}
+    .bf-title{font-family:var(--font-h);font-weight:900;font-size:clamp(1.2rem,2.5vw,1.8rem);background:linear-gradient(90deg,#fff,var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .bf-sub{font-size:.88rem;color:rgba(255,255,255,.58);margin-top:.2rem}
 
-    /* ─── CURSURI ─── */
-    #cursuri { background: var(--black); }
-    .cursuri-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-    .curs-card {
-      background: var(--dark);
-      border: 1px solid var(--dark3);
-      border-radius: 3px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-    }
-    .curs-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
-    .curs-header {
-      padding: 2rem 2rem 1.5rem;
-      position: relative;
-    }
-    .curs-badge {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      background: var(--orange);
-      color: var(--black);
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 1.8rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 2px;
-      letter-spacing: -0.02em;
-    }
-    .curs-cat {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 0.5rem;
-    }
-    .curs-title {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 2rem;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-    .curs-subtitle { font-size: 0.9rem; color: var(--grey); margin-top: 0.3rem; }
-    .curs-divider { height: 1px; background: var(--dark3); margin: 0 2rem; }
-    .curs-body { padding: 1.5rem 2rem 2rem; }
-    .curs-features { list-style: none; margin-bottom: 1.5rem; }
-    .curs-features li {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-      padding: 0.45rem 0;
-      border-bottom: 1px solid var(--dark3);
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-    .curs-features li::before {
-      content: '▶';
-      color: var(--orange);
-      font-size: 0.55rem;
-      flex-shrink: 0;
-    }
-    .curs-price {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 2.2rem;
-      color: var(--orange);
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-    }
-    .curs-price small {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--grey);
-      font-family: var(--font-body);
-    }
-    .curs-btn {
-      display: block;
-      text-align: center;
-      margin-top: 1.2rem;
-      padding: 0.9rem;
-      background: transparent;
-      border: 2px solid var(--orange);
-      color: var(--orange);
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background 0.25s, color 0.25s;
-    }
-    .curs-btn:hover { background: var(--orange); color: var(--black); }
-    .curs-card.featured { border-color: var(--orange); }
-    .curs-card.featured .curs-header { background: linear-gradient(135deg, rgba(245,166,35,0.12), transparent); }
+    /* ── CATEGORII ── */
+    #cursuri{background:var(--black)}
+    .cat-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem}
+    .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .ccard{border-radius:var(--r);overflow:hidden;background:var(--dark);border:1px solid var(--dark3);transition:transform .32s,box-shadow .32s;display:flex;flex-direction:column}
+    .ccard:hover{transform:translateY(-8px);box-shadow:0 24px 58px rgba(0,0,0,.55),0 0 0 1px rgba(255,107,0,.18)}
+    .ccard.feat{border-color:rgba(255,107,0,.45)}
+    .cpic{position:relative;height:230px;overflow:hidden;background:var(--dark2)}
+    .cpic img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+    .ccard:hover .cpic img{transform:scale(1.07)}
+    .cpic-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,20,.88) 0%,rgba(20,20,20,.18) 50%,transparent 100%)}
+    .cpic-badge{position:absolute;top:1rem;left:1rem;background:linear-gradient(135deg,var(--orange),#FF8C00);color:#fff;font-family:var(--font-h);font-weight:900;font-size:1.6rem;padding:.3rem .8rem;border-radius:var(--rs);box-shadow:0 4px 16px rgba(255,107,0,.5)}
+    .cpic-pop{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:var(--font-h);font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;border-radius:50px}
+    .cpic-age{position:absolute;bottom:1rem;left:1rem;background:rgba(0,0,0,.58);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);padding:.32rem .72rem;border-radius:50px;font-family:var(--font-h);font-weight:700;font-size:.78rem;color:var(--amber)}
+    .cbody{padding:1.8rem;flex:1;display:flex;flex-direction:column}
+    .ceyebrow{font-family:var(--font-h);font-weight:700;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.4rem}
+    .ctitle{font-family:var(--font-h);font-weight:900;font-size:1.7rem;margin-bottom:.3rem}
+    .csub{font-size:.87rem;color:var(--grey);margin-bottom:1.3rem;line-height:1.5}
+    .cspecs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.3rem}
+    .chip{display:inline-flex;align-items:center;gap:.4rem;background:var(--dark3);border:1px solid rgba(255,255,255,.07);padding:.28rem .72rem;border-radius:50px;font-family:var(--font-h);font-weight:600;font-size:.76rem;color:rgba(255,255,255,.8)}
+    .chip span{color:var(--orange)}
+    .cdesc{font-size:.87rem;color:rgba(255,255,255,.6);line-height:1.76;margin-bottom:1.3rem;flex:1}
+    .exambox{background:rgba(255,107,0,.07);border:1px solid rgba(255,107,0,.18);border-radius:var(--rs);padding:1rem 1.2rem;margin-bottom:1.3rem}
+    .exambox-title{font-family:var(--font-h);font-weight:700;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.45rem}
+    .exambox p{font-size:.81rem;color:rgba(255,255,255,.58);line-height:1.65}
+    .cfeats{list-style:none;margin-bottom:1.4rem}
+    .cfeats li{display:flex;align-items:flex-start;gap:.68rem;font-size:.86rem;color:rgba(255,255,255,.74);padding:.52rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .cfeats li:last-child{border-bottom:none}
+    .fdot{width:20px;height:20px;border-radius:50%;background:var(--og);border:1px solid rgba(255,107,0,.28);display:flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--orange);flex-shrink:0;margin-top:1px}
+    .cfoot{border-top:1px solid rgba(255,255,255,.07);padding-top:1.3rem;margin-top:auto}
+    .cprice-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:1rem}
+    .cprice{font-family:var(--font-h);font-weight:900;font-size:2rem;color:#fff;line-height:1}
+    .cprice-cur{font-size:1.1rem;color:var(--orange);font-weight:700}
+    .cprice-note{font-size:.8rem;color:var(--grey)}
+    .ccta{display:block;text-align:center;padding:.88rem 1.5rem;border-radius:50px;font-family:var(--font-h);font-weight:700;font-size:.93rem;cursor:pointer;transition:all .25s;border:none}
+    .ccta-fill{background:linear-gradient(135deg,var(--orange),#FF8C00);color:#fff;box-shadow:0 6px 20px rgba(255,107,0,.35)}
+    .ccta-fill:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,107,0,.5)}
+    .ccta-out{background:transparent;border:2px solid rgba(255,107,0,.42);color:var(--orange)}
+    .ccta-out:hover{background:var(--og);border-color:var(--orange)}
 
-    /* ─── DE CE MOTOSKILL ─── */
-    #dece {
-      background: var(--dark);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .dece-list { list-style: none; margin-top: 2.5rem; }
-    .dece-item {
-      display: flex;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--dark3);
-      transition: border-color 0.25s;
-    }
-    .dece-item:hover { border-bottom-color: var(--orange); }
-    .dece-num {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 2.5rem;
-      color: var(--orange);
-      opacity: 0.5;
-      line-height: 1;
-      flex-shrink: 0;
-      width: 3rem;
-    }
-    .dece-text h4 {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 0.3rem;
-    }
-    .dece-text p { font-size: 0.9rem; color: var(--grey); line-height: 1.7; }
-    .dece-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .dece-img-card {
-      border-radius: 3px;
-      aspect-ratio: 1;
-      background: var(--dark2);
-      border: 1px solid var(--dark3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.7rem;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .dece-img-card:hover { border-color: var(--orange); transform: scale(1.02); }
-    .dece-img-card:first-child { grid-column: 1 / -1; aspect-ratio: 2/1; }
-    .dece-img-icon { font-size: 2.5rem; }
-    .dece-img-label {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--grey);
-      text-align: center;
-    }
+    /* ── PAȘI ── */
+    #steps{background:var(--warm)}
+    .steps-head{text-align:center;max-width:600px;margin:0 auto 3.5rem}
+    .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
+    .steps-grid::before{content:'';position:absolute;top:36px;left:calc(12.5%);right:calc(12.5%);height:2px;background:linear-gradient(90deg,transparent,var(--orange),var(--amber),var(--orange),transparent);z-index:0}
+    .scard{text-align:center;position:relative;z-index:1;padding:0 .5rem}
+    .snum{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--orange),#FF8C00);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-weight:900;font-size:1.5rem;color:#fff;margin:0 auto 1.2rem;box-shadow:0 8px 26px rgba(255,107,0,.4)}
+    .stitle2{font-family:var(--font-h);font-weight:700;font-size:1rem;margin-bottom:.55rem}
+    .sdesc{font-size:.84rem;color:var(--grey);line-height:1.7}
 
-    /* ─── RECENZII ─── */
-    #recenzii { background: var(--black); overflow: hidden; }
-    .recenzii-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
-    .recenzii-track {
-      display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      padding-bottom: 1rem;
-    }
-    .recenzii-track::-webkit-scrollbar { display: none; }
-    .recenzie-card {
-      flex: 0 0 380px;
-      background: var(--dark);
-      border: 1px solid var(--dark3);
-      border-radius: 3px;
-      padding: 2rem;
-      scroll-snap-align: start;
-      transition: border-color 0.25s;
-    }
-    .recenzie-card:hover { border-color: var(--orange); }
-    .stars { color: var(--orange); font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
-    .recenzie-text {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.8;
-      font-style: italic;
-      margin-bottom: 1.5rem;
-    }
-    .recenzie-autor {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .autor-avatar {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: var(--orange);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: var(--black);
-      flex-shrink: 0;
-    }
-    .autor-info {}
-    .autor-name {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.05em;
-    }
-    .autor-curs { font-size: 0.8rem; color: var(--grey); }
-    .recenzii-nav { display: flex; gap: 0.7rem; }
-    .nav-btn {
-      width: 44px; height: 44px;
-      border: 2px solid var(--dark3);
-      background: none;
-      color: var(--white);
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-      transition: border-color 0.25s, background 0.25s;
-    }
-    .nav-btn:hover { border-color: var(--orange); background: var(--orange); color: var(--black); }
+    /* ── DE CE ── */
+    #dece{background:var(--dark)}
+    .dece-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .dece-list{list-style:none;margin-top:2.5rem}
+    .ditem{display:flex;gap:1.2rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.07);transition:border-color .25s}
+    .ditem:hover{border-bottom-color:rgba(255,107,0,.28)}
+    .dicon{width:48px;height:48px;border-radius:12px;flex-shrink:0;background:var(--og);border:1px solid rgba(255,107,0,.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+    .dit-title{font-family:var(--font-h);font-weight:700;font-size:1rem;margin-bottom:.28rem}
+    .dit-desc{font-size:.86rem;color:var(--grey);line-height:1.7}
+    .dece-vis{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .dvc{border-radius:var(--r);background:var(--dark2);border:1px solid var(--dark3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.65rem;transition:all .3s;padding:1.5rem}
+    .dvc:hover{border-color:rgba(255,107,0,.28);transform:scale(1.03)}
+    .dvc:first-child{grid-column:1/-1;aspect-ratio:2/1;background:linear-gradient(135deg,#1f1208,#2a1600)}
+    .dvc-icon{font-size:2.4rem}
+    .dvc-num{font-family:var(--font-h);font-weight:900;font-size:1.9rem;color:var(--orange)}
+    .dvc-lbl{font-family:var(--font-h);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);text-align:center}
 
-    /* ─── CONTACT ─── */
-    #contact { background: var(--dark); }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      margin-top: 3.5rem;
-    }
-    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
-    .contact-item {
-      display: flex;
-      gap: 1.2rem;
-      align-items: flex-start;
-      padding: 1.2rem;
-      background: var(--dark2);
-      border-radius: 3px;
-      border: 1px solid var(--dark3);
-    }
-    .contact-icon {
-      width: 44px; height: 44px;
-      background: var(--orange);
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .contact-item-title {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin-bottom: 0.3rem;
-    }
-    .contact-item-val {
-      font-size: 0.95rem;
-      color: var(--white);
-      line-height: 1.5;
-    }
-    .social-links { display: flex; gap: 1rem; margin-top: 0.5rem; }
-    .social-link {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--dark3);
-      border-radius: 2px;
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey);
-      transition: all 0.25s;
-    }
-    .social-link:hover { border-color: var(--orange); color: var(--orange); }
-    .map-placeholder {
-      background: var(--dark2);
-      border: 1px solid var(--dark3);
-      border-radius: 3px;
-      overflow: hidden;
-      min-height: 400px;
-      position: relative;
-    }
-    .map-placeholder iframe {
-      width: 100%; height: 100%;
-      min-height: 400px;
-      border: none;
-      filter: grayscale(60%) invert(0%) contrast(90%);
-    }
+    /* ── RECENZII ── */
+    #recenzii{background:var(--black);overflow:hidden}
+    .rec-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem}
+    .stars-big{font-size:1.5rem;letter-spacing:.05em;color:var(--amber)}
+    .stars-ct{font-size:.8rem;color:var(--grey)}
+    .rec-track{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:1rem}
+    .rec-track::-webkit-scrollbar{display:none}
+    .rcard{flex:0 0 360px;background:var(--dark);border:1px solid var(--dark3);border-radius:var(--r);padding:1.8rem;scroll-snap-align:start;transition:border-color .25s,transform .25s}
+    .rcard:hover{border-color:rgba(255,107,0,.28);transform:translateY(-4px)}
+    .rstars{color:var(--amber);font-size:1rem;letter-spacing:.1em;margin-bottom:.28rem}
+    .rsrc{font-size:.7rem;color:var(--grey);margin-bottom:1rem}
+    .rtxt{font-size:.91rem;color:rgba(255,255,255,.76);line-height:1.8;font-style:italic;margin-bottom:1.3rem}
+    .rautor{display:flex;align-items:center;gap:.85rem}
+    .ravatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--amber));display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-weight:900;font-size:1rem;color:#fff;flex-shrink:0}
+    .rname{font-family:var(--font-h);font-weight:700;font-size:.91rem}
+    .rcat{font-size:.76rem;color:var(--grey)}
+    .rec-nav{display:flex;gap:.7rem}
+    .rbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--dark3);background:var(--dark);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .25s}
+    .rbtn:hover{border-color:var(--orange);background:var(--orange)}
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--black);
-      border-top: 1px solid var(--dark3);
-      padding: 3rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-logo { font-family: var(--font-head); font-weight: 900; font-size: 1.5rem; text-transform: uppercase; }
-    .footer-logo span { color: var(--orange); }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { font-size: 0.85rem; color: var(--grey); transition: color 0.25s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { font-size: 0.8rem; color: var(--grey2); }
+    /* ── CONTACT ── */
+    #contact{background:var(--warm)}
+    .cg{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;margin-top:3.5rem}
+    .cc-list{display:flex;flex-direction:column;gap:1rem}
+    .cc{display:flex;gap:1.2rem;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:1.3rem;transition:border-color .25s}
+    .cc:hover{border-color:rgba(255,107,0,.28)}
+    .cc-icon{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,var(--orange),#FF8C00);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(255,107,0,.32)}
+    .cc-lbl{font-family:var(--font-h);font-weight:700;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.22rem}
+    .cc-val{font-size:.94rem;line-height:1.55}
+    .cc-val a{color:#fff;transition:color .2s}
+    .cc-val a:hover{color:var(--orange)}
+    .srow{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem}
+    .sbtn{display:inline-flex;align-items:center;gap:.5rem;padding:.52rem 1.1rem;border-radius:50px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);font-family:var(--font-h);font-weight:700;font-size:.79rem;color:rgba(255,255,255,.68);transition:all .25s}
+    .sbtn:hover{border-color:var(--orange);color:var(--orange);background:var(--og)}
+    .map-w{border-radius:var(--r);overflow:hidden;min-height:420px;border:1px solid rgba(255,255,255,.08);position:relative}
+    .map-w iframe{width:100%;height:100%;min-height:420px;border:none}
 
-    /* ─── EDIT PANEL ─── */
-    #edit-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 2000;
-      background: var(--orange);
-      color: var(--black);
-      border: none;
-      border-radius: 50px;
-      padding: 0.9rem 1.6rem;
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      box-shadow: 0 4px 24px rgba(245,166,35,0.35);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    #edit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,166,35,0.5); }
-    #edit-btn svg { width: 18px; height: 18px; }
+    /* ── FOOTER ── */
+    footer{background:var(--black);border-top:1px solid rgba(255,255,255,.07);padding:3rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+    .flogo{font-family:var(--font-h);font-weight:900;font-size:1.4rem}
+    .flogo em{color:var(--orange);font-style:normal}
+    .flinks{display:flex;gap:1.8rem;flex-wrap:wrap}
+    .flinks a{font-size:.86rem;color:var(--grey);transition:color .2s}
+    .flinks a:hover{color:#fff}
+    .fcopy{font-size:.77rem;color:var(--grey2)}
 
-    #edit-panel {
-      position: fixed;
-      top: 0; right: -480px;
-      width: 440px;
-      max-width: 95vw;
-      height: 100vh;
-      background: #131313;
-      border-left: 1px solid var(--dark3);
-      z-index: 3000;
-      overflow-y: auto;
-      transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
-      box-shadow: -10px 0 50px rgba(0,0,0,0.6);
-    }
-    #edit-panel.open { right: 0; }
-    .panel-header {
-      padding: 1.5rem 1.8rem;
-      border-bottom: 1px solid var(--dark3);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      background: #131313;
-      z-index: 1;
-    }
-    .panel-header h3 {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .panel-header h3 span { color: var(--orange); }
-    .panel-close {
-      background: var(--dark2);
-      border: none;
-      color: var(--white);
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.2rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.25s;
-    }
-    .panel-close:hover { background: var(--dark3); }
-    .panel-body { padding: 1.5rem 1.8rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .edit-group { display: flex; flex-direction: column; gap: 0.5rem; }
-    .edit-label {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--orange);
-    }
-    .edit-input, .edit-textarea {
-      background: var(--dark2);
-      border: 1px solid var(--dark3);
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      padding: 0.8rem 1rem;
-      border-radius: 3px;
-      width: 100%;
-      transition: border-color 0.25s;
-      resize: vertical;
-    }
-    .edit-input:focus, .edit-textarea:focus {
-      outline: none;
-      border-color: var(--orange);
-    }
-    .edit-textarea { min-height: 80px; }
-    .panel-save {
-      background: var(--orange);
-      color: var(--black);
-      border: none;
-      padding: 1rem;
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background 0.25s;
-      width: 100%;
-      margin-top: 0.5rem;
-    }
-    .panel-save:hover { background: var(--orange2); }
-    .panel-divider {
-      height: 1px;
-      background: var(--dark3);
-      margin: 0.3rem 0;
-    }
-    .panel-section-title {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--grey);
-      padding-top: 0.5rem;
-    }
-    .save-toast {
-      position: fixed;
-      bottom: 5.5rem;
-      right: 2rem;
-      background: #1a3a1a;
-      border: 1px solid #2a6a2a;
-      color: #6ddb6d;
-      padding: 0.8rem 1.5rem;
-      border-radius: 4px;
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
-      z-index: 4000;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      pointer-events: none;
-    }
-    .save-toast.show { opacity: 1; transform: translateY(0); }
+    /* ── EDIT ── */
+    #ebtn{position:fixed;bottom:2rem;right:2rem;z-index:2000;background:linear-gradient(135deg,var(--orange),#FF8C00);color:#fff;border:none;border-radius:50px;padding:.85rem 1.6rem;font-family:var(--font-h);font-weight:800;font-size:.87rem;letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;gap:.6rem;box-shadow:0 6px 28px rgba(255,107,0,.45);transition:transform .25s,box-shadow .25s}
+    #ebtn:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(255,107,0,.6)}
+    #epanel{position:fixed;top:0;right:-480px;width:440px;max-width:95vw;height:100vh;background:#111;border-left:1px solid rgba(255,255,255,.08);z-index:3000;overflow-y:auto;transition:right .4s cubic-bezier(.4,0,.2,1);box-shadow:-20px 0 60px rgba(0,0,0,.7)}
+    #epanel.open{right:0}
+    .phdr{padding:1.5rem 1.8rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#111;z-index:1}
+    .phdr h3{font-family:var(--font-h);font-weight:800;font-size:1.1rem}
+    .phdr h3 em{color:var(--orange);font-style:normal}
+    .pclose{background:var(--dark2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .2s}
+    .pclose:hover{background:var(--dark3)}
+    .pbody{padding:1.5rem 1.8rem;display:flex;flex-direction:column;gap:1.1rem}
+    .esect{font-family:var(--font-h);font-weight:800;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);padding:.4rem 0}
+    .esep{height:1px;background:rgba(255,255,255,.07)}
+    .egrp{display:flex;flex-direction:column;gap:.4rem}
+    .elbl{font-family:var(--font-h);font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+    .einp,.eta{background:var(--dark2);border:1px solid rgba(255,255,255,.1);color:#fff;font-family:var(--font-b);font-size:.89rem;padding:.72rem 1rem;border-radius:var(--rs);width:100%;transition:border-color .2s;resize:vertical}
+    .einp:focus,.eta:focus{outline:none;border-color:var(--orange)}
+    .eta{min-height:78px}
+    .psave{background:linear-gradient(135deg,var(--orange),#FF8C00);color:#fff;border:none;padding:1rem;border-radius:50px;font-family:var(--font-h);font-weight:800;font-size:.93rem;cursor:pointer;transition:opacity .2s;width:100%}
+    .psave:hover{opacity:.9}
+    .psave-g{background:transparent;border:1px solid rgba(255,255,255,.14);color:var(--grey);padding:.88rem;border-radius:50px;font-family:var(--font-h);font-weight:700;font-size:.86rem;cursor:pointer;width:100%;transition:border-color .2s}
+    .psave-g:hover{border-color:rgba(255,255,255,.32)}
+    .toast{position:fixed;bottom:5.5rem;right:2rem;background:#0d2b0d;border:1px solid #1f5c1f;color:#6ddb6d;padding:.8rem 1.5rem;border-radius:var(--rs);font-family:var(--font-h);font-weight:700;font-size:.87rem;z-index:4000;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none}
+    .toast.on{opacity:1;transform:translateY(0)}
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scrollPulse {
-      0%,100% { opacity: 0.5; }
-      50%      { opacity: 1; }
-    }
+    /* ── MOBILE NAV ── */
+    .mnav{display:none;position:fixed;top:74px;left:0;right:0;background:rgba(13,13,13,.97);backdrop-filter:blur(16px);padding:1.5rem 5%;flex-direction:column;gap:0;z-index:998;border-bottom:1px solid rgba(255,255,255,.08)}
+    .mnav.open{display:flex}
+    .mnav a{font-family:var(--font-h);font-weight:600;font-size:1.25rem;color:rgba(255,255,255,.8);padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.07);transition:color .2s}
+    .mnav a:hover{color:var(--orange)}
+    .mnav .mcta{color:var(--orange)!important;font-weight:800;border-bottom:none;margin-top:.5rem}
 
-    /* ─── MOBILE MENU ─── */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 72px; left: 0; right: 0;
-      background: rgba(10,10,10,0.98);
-      backdrop-filter: blur(10px);
-      padding: 2rem 5%;
-      flex-direction: column;
-      gap: 1.5rem;
-      z-index: 999;
-      border-top: 1px solid var(--dark3);
+    /* ── RESPONSIVE ── */
+    @media(max-width:1000px){
+      nav{display:none} .ham{display:flex}
+      #despre{grid-template-columns:1fr;gap:2.5rem}
+      .cat-grid{grid-template-columns:1fr}
+      .steps-grid{grid-template-columns:1fr 1fr}
+      .steps-grid::before{display:none}
+      .dece-wrap{grid-template-columns:1fr;gap:2.5rem}
+      .dece-vis{display:none}
+      .cg{grid-template-columns:1fr;gap:2.5rem}
+      #stats{grid-template-columns:repeat(2,1fr)}
+      footer{flex-direction:column;text-align:center}
+      .flinks{justify-content:center}
+      .rec-hdr{flex-direction:column;align-items:flex-start;gap:1rem}
+      #epanel{width:100%;max-width:100%}
+      .feats-grid{grid-template-columns:1fr}
     }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--white);
-      border-bottom: 1px solid var(--dark3);
-      padding-bottom: 1rem;
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { display: none; }
-      .hamburger { display: flex; }
-      #despre, #dece, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .cursuri-grid { grid-template-columns: 1fr; }
-      #stats { grid-template-columns: repeat(2, 1fr); }
-      .recenzii-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .hero-content { margin-left: 0; }
-      footer { flex-direction: column; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-      .despre-features { grid-template-columns: 1fr; }
-      .dece-visual { display: none; }
-      #edit-panel { width: 100%; max-width: 100%; }
+    @media(max-width:640px){
+      section{padding:4rem 5%}
+      .h-title{font-size:clamp(2.8rem,10vw,4rem)}
+      .steps-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ NAVBAR ═══ -->
-<header id="navbar">
-  <a href="#" class="logo">Moto<span>Skill</span></a>
+<!-- NAVBAR -->
+<header id="nav">
+  <a href="#" class="logo">Moto<em>Skill</em></a>
   <nav>
     <a href="#despre">Despre noi</a>
-    <a href="#cursuri">Cursuri</a>
-    <a href="#dece">De ce noi</a>
+    <a href="#cursuri">Categorii</a>
+    <a href="#steps">Cum funcționează</a>
     <a href="#recenzii">Recenzii</a>
     <a href="#contact">Contact</a>
-    <a href="#contact" class="nav-cta">Înscrie-te acum</a>
+    <a href="#contact" class="nav-cta">🎁 Ședință gratuită</a>
   </nav>
-  <button class="hamburger" id="hamburger" aria-label="Meniu">
+  <button class="ham" id="ham" aria-label="Meniu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<div class="mobile-nav" id="mobile-nav">
-  <a href="#despre" onclick="closeMobileNav()">Despre noi</a>
-  <a href="#cursuri" onclick="closeMobileNav()">Cursuri</a>
-  <a href="#dece" onclick="closeMobileNav()">De ce noi</a>
-  <a href="#recenzii" onclick="closeMobileNav()">Recenzii</a>
-  <a href="#contact" onclick="closeMobileNav()">Contact</a>
-  <a href="#contact" class="nav-cta" onclick="closeMobileNav()">Înscrie-te acum</a>
+<div class="mnav" id="mnav">
+  <a href="#despre" onclick="cmn()">Despre noi</a>
+  <a href="#cursuri" onclick="cmn()">Categorii</a>
+  <a href="#steps" onclick="cmn()">Cum funcționează</a>
+  <a href="#recenzii" onclick="cmn()">Recenzii</a>
+  <a href="#contact" onclick="cmn()">Contact</a>
+  <a href="#contact" class="mcta" onclick="cmn()">🎁 Ședință gratuită</a>
 </div>
 
-<!-- ═══ HERO ═══ -->
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-video-wrap">
-    <!-- VIDEO: înlocuiește src cu link-ul real al videoclipului tău -->
-    <!-- Exemplu YouTube embed sau fișier .mp4 local:
-         <video autoplay muted loop playsinline src="video/hero.mp4"></video>
-         SAU un iframe YouTube cu autoplay -->
-    <div class="hero-fallback">
-      <!-- Placeholder animat până când adaugi videoclipul -->
-      <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
-        <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle"
-              font-family="Barlow Condensed,sans-serif" font-weight="900"
-              font-size="180" fill="white" letter-spacing="-10">
-          MOTO
-        </text>
-        <text x="50%" y="95%" dominant-baseline="middle" text-anchor="middle"
-              font-family="Barlow Condensed,sans-serif" font-weight="900"
-              font-size="180" fill="white" letter-spacing="-10">
-          SKILL
-        </text>
-      </svg>
-    </div>
+  <div class="hero-vid">
+    <!--
+    ════════════════════════════════════════════
+    VIDEO HERO — Adaugă videoclipul tău aici!
+
+    OPȚIUNEA 1 — Fișier .mp4 local:
+    Copiază fișierul video în același folder cu index.html
+    și decomentează (șterge marcajele !) linia de mai jos,
+    înlocuind "hero.mp4" cu numele fișierului tău:
+
+    <video autoplay muted loop playsinline preload="auto" src="hero.mp4"></video>
+
+    OPȚIUNEA 2 — YouTube (fără butoane):
+    Înlocuiește YOUTUBE_ID cu ID-ul videoclipului tău
+    (ex: dacă linkul e youtube.com/watch?v=AbCdEfGhIjK, ID-ul e AbCdEfGhIjK)
+
+    <iframe src="https://www.youtube.com/embed/YOUTUBE_ID?autoplay=1&mute=1&loop=1&controls=0&playlist=YOUTUBE_ID&showinfo=0&rel=0"
+      frameborder="0" allow="autoplay;encrypted-media" allowfullscreen
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none"></iframe>
+    ════════════════════════════════════════════
+    -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
   </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-badge" id="e-hero-badge">Școala Moto · București · Sector 2</div>
-    <h1 class="hero-title">
-      <span id="e-hero-title1">Stăpânește</span>
-      <em id="e-hero-title2">Motocicleta</em>
+  <div class="hero-ov"></div>
+
+  <div class="hero-cnt">
+    <div class="hero-pill" id="e-pill">Sector 2 · Șos. Electronicii 48 · 10+ ani experiență</div>
+    <h1 class="h-title">
+      <span id="e-t1">Libertatea</span><br>
+      <span class="grad" id="e-t2">pe două roți</span><br>
+      <span id="e-t3">începe aici.</span>
     </h1>
-    <p class="hero-subtitle" id="e-hero-sub">
-      Cursuri profesionale de motocicletă pentru toate categoriile — A, A1, A2. Instructori certificați, poligon modern și o metodologie care te transformă dintr-un începător în un rider sigur pe sine.
-    </p>
-    <div class="hero-buttons">
-      <a href="#cursuri" class="btn-primary" id="e-btn1">Alege cursul tău</a>
-      <a href="#contact" class="btn-secondary" id="e-btn2">Contactează-ne</a>
+    <p class="h-sub" id="e-sub">Cursuri moto pentru toate categoriile — A, A1, A2. Instructori pasionați, poligon modern și prima ședință complet gratuită. Vino să simți motocicleta!</p>
+    <div class="hero-btns">
+      <a href="#cursuri" class="btn-fill" id="e-b1">🏍️ &nbsp;Alege categoria ta</a>
+      <a href="#contact" class="btn-ghost" id="e-b2">🎁 &nbsp;Ședință gratuită</a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+
+  <div class="hero-vid-badge">
+    <div class="pulse-btn">▶</div>
+    <div>
+      <div class="vb-txt">MotoSkill în acțiune</div>
+      <div class="vb-sub">Poligon București · Sector 2</div>
+    </div>
+  </div>
+
+  <div class="scroll-ind">
+    <span>Descoperă</span>
+    <div class="sdot"></div>
   </div>
 </section>
 
-<!-- ═══ STATS ═══ -->
+<!-- STATS -->
 <div id="stats">
-  <div class="stat-item">
-    <div class="stat-num" id="e-stat1n">500+</div>
-    <div class="stat-label" id="e-stat1l">Elevi instruiți</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num" id="e-stat2n">3</div>
-    <div class="stat-label" id="e-stat2l">Categorii disponibile</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num" id="e-stat3n">98%</div>
-    <div class="stat-label" id="e-stat3l">Rată de promovare</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num" id="e-stat4n">5★</div>
-    <div class="stat-label" id="e-stat4l">Recenzii Google</div>
-  </div>
+  <div class="sitem"><div class="snum" id="e-s1n">10+</div><div class="slbl" id="e-s1l">Ani de experiență</div></div>
+  <div class="sitem"><div class="snum" id="e-s2n">3</div><div class="slbl" id="e-s2l">Categorii: A · A1 · A2</div></div>
+  <div class="sitem"><div class="snum" id="e-s3n">1700</div><div class="slbl" id="e-s3l">Lei — de la</div></div>
+  <div class="sitem"><div class="snum" id="e-s4n">GRATIS</div><div class="slbl" id="e-s4l">Prima ședință test</div></div>
 </div>
 
-<!-- ═══ DESPRE NOI ═══ -->
+<!-- DESPRE -->
 <section id="despre">
-  <div class="despre-visual">
-    <div class="despre-visual-inner">
-      🏍️
+  <div class="dp-vis">
+    <div class="dp-vis-bg"><div class="dp-big">MOTO<br>SKILL</div></div>
+    <div class="dp-badge">
+      <div class="dp-badge-n" id="e-dp-n">10+</div>
+      <div class="dp-badge-t" id="e-dp-t">Ani de experiență</div>
     </div>
-    <div class="despre-accent-box">
-      <span class="despre-accent-num">A</span>
-      <span class="despre-accent-txt">A1 · A2 · A</span>
-    </div>
+    <div class="dp-badge2"><div class="dp-badge2-t">🏁 Sector 2 · Baicului</div></div>
   </div>
   <div>
-    <span class="section-tag">Despre noi</span>
-    <h2 class="section-title" id="e-despre-title">Pasiunea<br>pentru moto<br>devine<br><em style="color:var(--orange)">meserie</em></h2>
-    <p class="section-body" id="e-despre-body">
-      MotoSkill este o școală de motocicletă cu sediul în București, Sector 2, dedicată formării de motocicliști siguri și competenți. Combinăm teoria modernă cu practică intensivă pe poligonul nostru, oferindu-ți tot ce ai nevoie pentru a obține permisul de conducere și pentru a te simți în siguranță pe drumurile publice.
-    </p>
-    <div class="despre-features">
-      <div class="feature-card">
-        <div class="feature-icon">🏁</div>
-        <div class="feature-title">Poligon propriu</div>
-        <div class="feature-desc">Suprafață asfaltată, marcaje profesionale, spațiu sigur pentru antrenament.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">👨‍🏫</div>
-        <div class="feature-title">Instructori certificați</div>
-        <div class="feature-desc">Echipă cu experiență de ani de zile în formarea motocicliștilor.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🏍️</div>
-        <div class="feature-title">Motociclete școală</div>
-        <div class="feature-desc">Flota noastră acoperă toate categoriile: A1, A2 și A.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📋</div>
-        <div class="feature-title">Toate categoriile</div>
-        <div class="feature-desc">Autorizați pentru categoriile A, A1 și A2, cu cursuri flexibile.</div>
-      </div>
+    <span class="eyebrow">Despre noi</span>
+    <h2 class="stitle" id="e-dp-title">Pasiunea pentru moto<br>devine <span class="og">meserie.</span></h2>
+    <p class="sbody" id="e-dp-body">MotoSkill este pe Șoseaua Electronicii nr. 48, Sector 2, zona Baicului. Cu o experiență de peste 10 ani, am format sute de motocicliști care conduc azi cu încredere și siguranță. La noi vei obține mai mult decât un permis — vei deveni un motociclist cu doza corectă de curaj și prudență. Libertatea de mișcare se simte cel mai bine pe două roți!</p>
+    <div class="feats-grid">
+      <div class="fc"><div class="fc-icon">🏁</div><div class="fc-title">Poligon Electronicii</div><div class="fc-desc">Şos. Electronicii 48 — suprafaţă asfaltată, marcaje pro pentru toate manevrele din examen.</div></div>
+      <div class="fc"><div class="fc-icon">👨‍🏫</div><div class="fc-title">Instructori pasionați</div><div class="fc-desc">Pedagogi cu experiență reală pe toate tipurile de drumuri, dedicaţi formării tale corecte.</div></div>
+      <div class="fc"><div class="fc-icon">🎁</div><div class="fc-title">Test complet gratuit</div><div class="fc-desc">Prima şedinţă de test e 100% gratuită. Vino să simţi motocicleta fără nicio presiune!</div></div>
+      <div class="fc"><div class="fc-icon">📋</div><div class="fc-title">A · A1 · A2</div><div class="fc-desc">Autorizaţi pentru toate categoriile moto, cu prețuri accesibile de la 1.700 lei.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CURSURI ═══ -->
-<section id="cursuri">
-  <span class="section-tag">Cursuri disponibile</span>
-  <h2 class="section-title" id="e-cursuri-title">Găsește cursul<br>potrivit pentru tine</h2>
-  <div class="cursuri-grid">
-
-    <div class="curs-card">
-      <div class="curs-header">
-        <span class="curs-badge">A1</span>
-        <div class="curs-cat">Categorie</div>
-        <div class="curs-title" id="e-a1-title">Categoria A1</div>
-        <div class="curs-subtitle" id="e-a1-sub">Motociclete până la 125cc / 11kW</div>
-      </div>
-      <div class="curs-divider"></div>
-      <div class="curs-body">
-        <ul class="curs-features" id="e-a1-list">
-          <li>Vârstă minimă: 16 ani</li>
-          <li>Teorie + practică pe poligon</li>
-          <li>Examen auto inclus în pregătire</li>
-          <li>Motocicletă de școală pusă la dispoziție</li>
-          <li>Instructor dedicat pe toată durata</li>
-        </ul>
-        <div class="curs-price">
-          <span id="e-a1-pret">Contact</span>
-          <small>pentru detalii</small>
-        </div>
-        <a href="#contact" class="curs-btn">Mă înscriu</a>
-      </div>
-    </div>
-
-    <div class="curs-card featured">
-      <div class="curs-header">
-        <span class="curs-badge">A2</span>
-        <div class="curs-cat">Cel mai popular</div>
-        <div class="curs-title" id="e-a2-title">Categoria A2</div>
-        <div class="curs-subtitle" id="e-a2-sub">Motociclete până la 35kW</div>
-      </div>
-      <div class="curs-divider"></div>
-      <div class="curs-body">
-        <ul class="curs-features" id="e-a2-list">
-          <li>Vârstă minimă: 18 ani</li>
-          <li>Teorie completă + manevre avansate</li>
-          <li>Ture pe drumuri reale incluse</li>
-          <li>Pregătire pentru examen DRPCIV</li>
-          <li>Motocicletă de 35kW pusă la dispoziție</li>
-        </ul>
-        <div class="curs-price">
-          <span id="e-a2-pret">Contact</span>
-          <small>pentru detalii</small>
-        </div>
-        <a href="#contact" class="curs-btn">Mă înscriu</a>
-      </div>
-    </div>
-
-    <div class="curs-card">
-      <div class="curs-header">
-        <span class="curs-badge">A</span>
-        <div class="curs-cat">Categorie</div>
-        <div class="curs-title" id="e-a-title">Categoria A</div>
-        <div class="curs-subtitle" id="e-a-sub">Motociclete fără restricții de putere</div>
-      </div>
-      <div class="curs-divider"></div>
-      <div class="curs-body">
-        <ul class="curs-features" id="e-a-list">
-          <li>Vârstă minimă: 24 ani (sau 21 ani cu A2)</li>
-          <li>Tehnici avansate de pilotaj</li>
-          <li>Antrenament pentru orice motocicletă</li>
-          <li>Pregătire completă pentru examen</li>
-          <li>Curriculum personalizat</li>
-        </ul>
-        <div class="curs-price">
-          <span id="e-a-pret">Contact</span>
-          <small>pentru detalii</small>
-        </div>
-        <a href="#contact" class="curs-btn">Mă înscriu</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══ DE CE MOTOSKILL ═══ -->
-<section id="dece">
-  <div>
-    <span class="section-tag">De ce noi</span>
-    <h2 class="section-title" id="e-dece-title">Mai mult decât<br>un simplu<br><em style="color:var(--orange)">permis</em></h2>
-    <ul class="dece-list">
-      <li class="dece-item">
-        <span class="dece-num">01</span>
-        <div class="dece-text">
-          <h4 id="e-dece1t">Instructori cu experiență reală</h4>
-          <p id="e-dece1p">Instructorii noștri sunt motocicliști pasionați cu sute de mii de km parcurși pe toate tipurile de drumuri.</p>
-        </div>
-      </li>
-      <li class="dece-item">
-        <span class="dece-num">02</span>
-        <div class="dece-text">
-          <h4 id="e-dece2t">Poligon modern în București</h4>
-          <p id="e-dece2p">Poligonul nostru din Sector 2 este dotat cu marcaje profesionale și infrastructură pentru toate manevrele din examen.</p>
-        </div>
-      </li>
-      <li class="dece-item">
-        <span class="dece-num">03</span>
-        <div class="dece-text">
-          <h4 id="e-dece3t">Program flexibil</h4>
-          <p id="e-dece3p">Cursuri în weekend și în timpul săptămânii, adaptate programului tău. Grupuri mici pentru atenție individuală.</p>
-        </div>
-      </li>
-      <li class="dece-item">
-        <span class="dece-num">04</span>
-        <div class="dece-text">
-          <h4 id="e-dece4t">Rată mare de promovare</h4>
-          <p id="e-dece4p">Pregătim elevii nu doar pentru a lua permisul, ci pentru a deveni motocicliști siguri și responsabili pe drumurile publice.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="dece-visual">
-    <div class="dece-img-card">
-      <div class="dece-img-icon">🏍️</div>
-      <div class="dece-img-label">Poligon MotoSkill</div>
-    </div>
-    <div class="dece-img-card">
-      <div class="dece-img-icon">🏆</div>
-      <div class="dece-img-label">Certificat autorizat</div>
-    </div>
-    <div class="dece-img-card">
-      <div class="dece-img-icon">🛡️</div>
-      <div class="dece-img-label">Siguranță pe primul loc</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ RECENZII ═══ -->
-<section id="recenzii">
-  <div class="recenzii-header">
+<!-- BANNER GRATUIT -->
+<div id="bfree">
+  <div class="bf-left">
+    <div class="bf-icon">🎁</div>
     <div>
-      <span class="section-tag">Ce spun elevii noștri</span>
-      <h2 class="section-title" id="e-rec-title">Recenzii<br>reale</h2>
-    </div>
-    <div class="recenzii-nav">
-      <button class="nav-btn" onclick="scrollRecenzii(-1)">&#8592;</button>
-      <button class="nav-btn" onclick="scrollRecenzii(1)">&#8594;</button>
+      <div class="bf-title" id="e-bf-title">Ședință de test GRATUITĂ!</div>
+      <div class="bf-sub" id="e-bf-sub">Dacă ești gata să înveți, îți oferim o ședință gratuită de test moto. Fără nicio obligație!</div>
     </div>
   </div>
-  <div class="recenzii-track" id="recenzii-track">
-    <div class="recenzie-card">
-      <div class="stars">★★★★★</div>
-      <p class="recenzie-text" id="e-rec1">"Cel mai bun instructor pe care îl puteam găsi! Am terminat categoria A2 cu MotoSkill și nu regret nicio secundă. Poligonul este excelent și instructorii sunt extrem de răbdători și profesionali."</p>
-      <div class="recenzie-autor">
-        <div class="autor-avatar">AM</div>
-        <div class="autor-info">
-          <div class="autor-name">Alexandru M.</div>
-          <div class="autor-curs">Categoria A2</div>
+  <a href="#contact" class="btn-fill">Vreau ședința gratuită →</a>
+</div>
+
+<!-- CATEGORII -->
+<section id="cursuri">
+  <div class="cat-head">
+    <div>
+      <span class="eyebrow">Cursuri disponibile</span>
+      <h2 class="stitle" id="e-cat-title">Alege categoria<br>potrivită pentru tine</h2>
+    </div>
+    <p style="max-width:330px;font-size:.9rem;color:var(--grey);line-height:1.72;align-self:flex-end;">Fiecare categorie are vârstă minimă, cerințe tehnice și avantaje specifice. Găsești mai jos toate detaliile legale și ce include cursul la MotoSkill.</p>
+  </div>
+
+  <div class="cat-grid">
+
+    <!-- A1 -->
+    <div class="ccard">
+      <div class="cpic">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Motocicletă 125cc Categoria A1" onerror="this.style.display='none'"/>
+        <div class="cpic-ov"></div>
+        <div class="cpic-badge">A1</div>
+        <div class="cpic-age">⏱ de la 16 ani</div>
+      </div>
+      <div class="cbody">
+        <div class="ceyebrow">Categoria A1 · Prima treaptă</div>
+        <div class="ctitle">Categoria A1</div>
+        <div class="csub">Motociclete până la 125 cm³ și 11 kW — perfecte pentru început și deplasări urbane.</div>
+        <div class="cspecs">
+          <div class="chip"><span>🎂</span> Min. 16 ani</div>
+          <div class="chip"><span>⚡</span> Max. 11 kW</div>
+          <div class="chip"><span>🔧</span> Max. 125 cm³</div>
+          <div class="chip"><span>⚖️</span> ≤ 0,1 kW/kg</div>
+        </div>
+        <p class="cdesc" id="e-a1-desc">Categoria A1 este prima treaptă în lumea motocicletelor, accesibilă de la 16 ani. Include motociclete cu cilindree max. 125 cm³, putere max. 11 kW și raport putere/greutate max. 0,1 kW/kg. Perfectă pentru scutere, moto electrice sau modele ușoare. Înscrierea se poate face cu 3 luni înainte de 16 ani.</p>
+        <div class="exambox">
+          <div class="exambox-title">📝 Examen DRPCIV</div>
+          <p>Probă teoretică pe calculator (20 întrebări, min. 17 corecte, 20 min.) + practică în poligon și pe traseu. Cu A1 de min. 2 ani, poți obține A2 fără examen teoretic (Legea 240/2025).</p>
+        </div>
+        <ul class="cfeats">
+          <li><div class="fdot">✓</div> Curs teoretic complet + legislație rutieră</li>
+          <li><div class="fdot">✓</div> Ședințe de poligon pe motocicleta școlii</li>
+          <li><div class="fdot">✓</div> Antrenament traseu cu instructor dedicat</li>
+          <li><div class="fdot">✓</div> Pregătire completă pentru examen DRPCIV</li>
+          <li><div class="fdot">✓</div> Durată: min. 4 săptămâni · max. 6 luni</li>
+        </ul>
+        <div class="cfoot">
+          <div class="cprice-row">
+            <span class="cprice-cur">Lei</span>
+            <span class="cprice" id="e-a1-p">1.700</span>
+            <span class="cprice-note">· curs complet</span>
+          </div>
+          <a href="#contact" class="ccta ccta-out">Vreau categoria A1</a>
         </div>
       </div>
     </div>
-    <div class="recenzie-card">
-      <div class="stars">★★★★★</div>
-      <p class="recenzie-text" id="e-rec2">"Am luat permisul de motocicletă după ani de zile în care mă tot amânam. MotoSkill m-a ajutat să capăt încredere pas cu pas. Recomand cu toată inima oricui vrea să înceapă."</p>
-      <div class="recenzie-autor">
-        <div class="autor-avatar">IR</div>
-        <div class="autor-info">
-          <div class="autor-name">Ioana R.</div>
-          <div class="autor-curs">Categoria A1</div>
+
+    <!-- A2 -->
+    <div class="ccard feat">
+      <div class="cpic">
+        <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=800&q=80" alt="Motocicletă A2 35kW" onerror="this.style.display='none'"/>
+        <div class="cpic-ov"></div>
+        <div class="cpic-badge">A2</div>
+        <div class="cpic-pop">⭐ Cel mai popular</div>
+        <div class="cpic-age">⏱ de la 18 ani</div>
+      </div>
+      <div class="cbody">
+        <div class="ceyebrow">Categoria A2 · Nivel intermediar</div>
+        <div class="ctitle">Categoria A2</div>
+        <div class="csub">Motociclete până la 35 kW — performanță controlabilă pentru tineri adulți.</div>
+        <div class="cspecs">
+          <div class="chip"><span>🎂</span> Min. 18 ani</div>
+          <div class="chip"><span>⚡</span> Max. 35 kW</div>
+          <div class="chip"><span>🔧</span> ~300–400 cm³</div>
+          <div class="chip"><span>⚖️</span> ≤ 0,2 kW/kg</div>
+        </div>
+        <p class="cdesc" id="e-a2-desc">Cea mai populară categorie, disponibilă de la 18 ani (înscrierea cu 2 luni înainte). Permite motociclete cu putere max. 35 kW și raport putere/greutate max. 0,2 kW/kg — practic marea majoritate a modelelor de 300–400 cm³. Nu este obligatorie deținerea A1 înainte de A2.</p>
+        <div class="exambox">
+          <div class="exambox-title">📝 Examen DRPCIV</div>
+          <p>Probă teoretică + practică (poligon + traseu). Cu A2 de min. 2 ani, poți obține categoria A fără examen teoretic (Legea 240/2025). Permisul A2 acoperă automat și A1.</p>
+        </div>
+        <ul class="cfeats">
+          <li><div class="fdot">✓</div> Curs teoretic complet + legislație</li>
+          <li><div class="fdot">✓</div> Manevre avansate de poligon</li>
+          <li><div class="fdot">✓</div> Ture pe drumuri reale cu instructor</li>
+          <li><div class="fdot">✓</div> Motocicletă de 35 kW pusă la dispoziție</li>
+          <li><div class="fdot">✓</div> Pregătire completă pentru DRPCIV</li>
+        </ul>
+        <div class="cfoot">
+          <div class="cprice-row">
+            <span class="cprice-cur" style="font-size:.9rem">Contact</span>
+            <span class="cprice-note" id="e-a2-p" style="font-size:.85rem">pentru ofertă personalizată</span>
+          </div>
+          <a href="#contact" class="ccta ccta-fill">Vreau categoria A2</a>
         </div>
       </div>
     </div>
-    <div class="recenzie-card">
-      <div class="stars">★★★★★</div>
-      <p class="recenzie-text" id="e-rec3">"Poligonul este modern, motocicletele de școală sunt în stare bună, iar instructorii știu exact cum să explice tehnicile. Am promovat examenul din prima. Mulțumesc MotoSkill!"</p>
-      <div class="recenzie-autor">
-        <div class="autor-avatar">CM</div>
-        <div class="autor-info">
-          <div class="autor-name">Cristian M.</div>
-          <div class="autor-curs">Categoria A</div>
+
+    <!-- A -->
+    <div class="ccard">
+      <div class="cpic">
+        <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=800&q=80" alt="Motocicletă mare Categoria A" onerror="this.style.display='none'"/>
+        <div class="cpic-ov"></div>
+        <div class="cpic-badge">A</div>
+        <div class="cpic-age">⏱ 24 ani direct · sau 20 cu A2</div>
+      </div>
+      <div class="cbody">
+        <div class="ceyebrow">Categoria A · Fără restricții</div>
+        <div class="ctitle">Categoria A</div>
+        <div class="csub">Orice motocicletă, fără nicio limită de putere sau cilindree — libertate totală.</div>
+        <div class="cspecs">
+          <div class="chip"><span>🎂</span> 24 ani direct</div>
+          <div class="chip"><span>🎂</span> 20 ani + A2 (2 ani)</div>
+          <div class="chip"><span>⚡</span> Fără limitări</div>
+          <div class="chip"><span>🔧</span> Min. 600 cm³ examen</div>
+        </div>
+        <p class="cdesc" id="e-a-desc">Categoria A oferă acces la orice motocicletă — naked, tourer, sportivă, adventure sau Harley-Davidson. Se obține direct la 24 de ani, sau la 20 de ani dacă ai A2 de minimum 2 ani. Examenul practic se susține pe o motocicletă de min. 600 cm³, 180 kg și 50 kW.</p>
+        <div class="exambox">
+          <div class="exambox-title">📝 Examen DRPCIV</div>
+          <p>Probă teoretică + practică pe moto de min. 600 cm³ / 180 kg / 50 kW. Cu A2 de min. 2 ani → scutit de proba teoretică (Legea 240/2025). Categoria A include A1, A2 automat.</p>
+        </div>
+        <ul class="cfeats">
+          <li><div class="fdot">✓</div> Pregătire avansată pentru moto sportivă/turistică</li>
+          <li><div class="fdot">✓</div> Motocicletă de 600 cm³+ pusă la dispoziție</li>
+          <li><div class="fdot">✓</div> Tehnici avansate de pilotaj</li>
+          <li><div class="fdot">✓</div> Curriculum adaptat nivelului tău</li>
+          <li><div class="fdot">✓</div> Înscrierea cu 3 luni înainte de 24 ani</li>
+        </ul>
+        <div class="cfoot">
+          <div class="cprice-row">
+            <span class="cprice-cur">Lei</span>
+            <span class="cprice" id="e-a-p">1.700</span>
+            <span class="cprice-note">· curs complet</span>
+          </div>
+          <a href="#contact" class="ccta ccta-out">Vreau categoria A</a>
         </div>
       </div>
     </div>
-    <div class="recenzie-card">
-      <div class="stars">★★★★★</div>
-      <p class="recenzie-text" id="e-rec4">"O echipă extraordinară! Programul flexibil m-a ajutat să combin cursurile cu job-ul. Atmosfera este prietenoasă și te simți în siguranță de la prima ședință pe poligon."</p>
-      <div class="recenzie-autor">
-        <div class="autor-avatar">DV</div>
-        <div class="autor-info">
-          <div class="autor-name">Diana V.</div>
-          <div class="autor-curs">Categoria A2</div>
-        </div>
-      </div>
+
+  </div>
+</section>
+
+<!-- PAȘI -->
+<section id="steps">
+  <div class="steps-head">
+    <span class="eyebrow" style="justify-content:center;">Procesul de înscriere</span>
+    <h2 class="stitle" id="e-steps-title">Cum funcționează?</h2>
+    <p class="sbody" style="margin:0 auto;text-align:center;">De la primul contact până la permis — 4 pași simpli.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="scard">
+      <div class="snum">1</div>
+      <div class="stitle2" id="e-st1">Contactează-ne</div>
+      <div class="sdesc" id="e-sd1">Sună, trimite un mesaj sau completează formularul. Îți răspundem rapid și stabilim ședința gratuită de test.</div>
+    </div>
+    <div class="scard">
+      <div class="snum">2</div>
+      <div class="stitle2" id="e-st2">Ședința gratuită</div>
+      <div class="sdesc" id="e-sd2">Vino la poligon, urci pe motocicletă și simți cum e. Prima ședință e 100% gratuită, fără nicio obligație!</div>
+    </div>
+    <div class="scard">
+      <div class="snum">3</div>
+      <div class="stitle2" id="e-st3">Cursul complet</div>
+      <div class="sdesc" id="e-sd3">Teorie + practică intensivă pe poligon și traseu. Min. 4 săptămâni, ritm adaptat programului tău.</div>
+    </div>
+    <div class="scard">
+      <div class="snum">4</div>
+      <div class="stitle2" id="e-st4">Promovezi și pleci!</div>
+      <div class="sdesc" id="e-sd4">Examen DRPCIV pregătit de la A la Z. Obții permisul și ești gata de drum — un motociclist adevărat!</div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CONTACT ═══ -->
+<!-- DE CE -->
+<section id="dece">
+  <div class="dece-wrap">
+    <div>
+      <span class="eyebrow">De ce noi</span>
+      <h2 class="stitle" id="e-dece-title">Mai mult decât<br>un simplu <span class="og">permis.</span></h2>
+      <ul class="dece-list">
+        <li class="ditem"><div class="dicon">🏆</div><div><div class="dit-title" id="e-d1t">10+ ani de experiență dovedită</div><div class="dit-desc" id="e-d1d">Pentru fiecare elev pregătit de noi, motociclismul a devenit o pasiune și un stil de viață. Știm cum să te formăm corect, pas cu pas.</div></div></li>
+        <li class="ditem"><div class="dicon">🏁</div><div><div class="dit-title" id="e-d2t">Poligon profesional, Sector 2</div><div class="dit-desc" id="e-d2d">Şos. Electronicii 48, zona Baicului — marcaje profesionale pentru toate manevrele cerute la examenul DRPCIV.</div></div></li>
+        <li class="ditem"><div class="dicon">🎁</div><div><div class="dit-title" id="e-d3t">Prima ședință complet gratuită</div><div class="dit-desc" id="e-d3d">Vino, urci pe motocicletă și simți cum e. Fără presiune, fără obligații — dacă îți place, continuăm împreună!</div></div></li>
+        <li class="ditem"><div class="dicon">🛡️</div><div><div class="dit-title" id="e-d4t">Curaj și prudență în proporție corectă</div><div class="dit-desc" id="e-d4d">Nu pregătim doar conducători de moto — formăm motocicliști responsabili, gata pentru orice drum din România.</div></div></li>
+      </ul>
+    </div>
+    <div class="dece-vis">
+      <div class="dvc"><div class="dvc-icon">🏍️</div><div class="dvc-num">A · A1 · A2</div><div class="dvc-lbl">Categorii autorizate</div></div>
+      <div class="dvc"><div class="dvc-icon">📍</div><div class="dvc-lbl">Sector 2<br>Şos. Electronicii 48</div></div>
+      <div class="dvc"><div class="dvc-icon">⭐</div><div class="dvc-lbl">Recenzii 5 stele<br>Google & Facebook</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENZII -->
+<section id="recenzii">
+  <div class="rec-hdr">
+    <div>
+      <span class="eyebrow">Recenzii</span>
+      <h2 class="stitle" id="e-rec-title">Ce spun<br>elevii noștri.</h2>
+    </div>
+    <div>
+      <div class="stars-big">★★★★★</div>
+      <div class="stars-ct">5.0 · Google & Facebook</div>
+      <div class="rec-nav" style="margin-top:1rem;">
+        <button class="rbtn" onclick="sr(-1)">←</button>
+        <button class="rbtn" onclick="sr(1)">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="rec-track" id="rt">
+    <div class="rcard"><div class="rstars">★★★★★</div><div class="rsrc">Recenzie Google</div><p class="rtxt" id="e-r1">"Cel mai bun instructor pe care îl puteam găsi! Am terminat categoria A2 cu MotoSkill și nu regret nicio secundă. Poligonul este excelent și instructorii sunt extrem de răbdători și profesioniști."</p><div class="rautor"><div class="ravatar">AM</div><div><div class="rname">Alexandru M.</div><div class="rcat">Categoria A2</div></div></div></div>
+    <div class="rcard"><div class="rstars">★★★★★</div><div class="rsrc">Recenzie Facebook</div><p class="rtxt" id="e-r2">"Am luat permisul de motocicletă după ani de zile în care mă tot amânam. MotoSkill m-a ajutat să capăt încredere pas cu pas. Recomand cu toată inima oricui vrea să înceapă!"</p><div class="rautor"><div class="ravatar">IR</div><div><div class="rname">Ioana R.</div><div class="rcat">Categoria A1</div></div></div></div>
+    <div class="rcard"><div class="rstars">★★★★★</div><div class="rsrc">Recenzie Google</div><p class="rtxt" id="e-r3">"Poligonul este modern, motocicletele de școală sunt în stare perfectă, iar instructorii știu exact cum să explice tehnicile. Am promovat examenul din prima. Mulțumesc MotoSkill!"</p><div class="rautor"><div class="ravatar">CM</div><div><div class="rname">Cristian M.</div><div class="rcat">Categoria A</div></div></div></div>
+    <div class="rcard"><div class="rstars">★★★★★</div><div class="rsrc">Recenzie Google</div><p class="rtxt" id="e-r4">"O echipă extraordinară! Programul flexibil m-a ajutat să combin cursurile cu job-ul. Atmosfera este prietenoasă și te simți în siguranță de la prima ședință pe poligon."</p><div class="rautor"><div class="ravatar">DV</div><div><div class="rname">Diana V.</div><div class="rcat">Categoria A2</div></div></div></div>
+    <div class="rcard"><div class="rstars">★★★★★</div><div class="rsrc">Recenzie Facebook</div><p class="rtxt" id="e-r5">"Libertatea de mișcare se simte cel mai bine pe două roți! La MotoSkill am găsit instructori cu adevărat pasionați. M-au transformat dintr-un total novice într-un motociclist sigur pe sine."</p><div class="rautor"><div class="ravatar">MF</div><div><div class="rname">Mihai F.</div><div class="rcat">Categoria A2</div></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
-  <span class="section-tag">Contact</span>
-  <h2 class="section-title" id="e-contact-title">Hai să vorbim<br>despre cursul tău</h2>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-item-title">Adresă</div>
-          <div class="contact-item-val" id="e-adresa">București, Sector 2<br>Poligon Moto MotoSkill</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-item-title">Telefon / WhatsApp</div>
-          <div class="contact-item-val" id="e-telefon">
-            <a href="tel:+40000000000" style="color:var(--orange)">+40 000 000 000</a>
-          </div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <div class="contact-item-title">Email</div>
-          <div class="contact-item-val" id="e-email">
-            <a href="mailto:contact@motoskill.ro" style="color:var(--orange)">contact@motoskill.ro</a>
-          </div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">⏰</div>
-        <div>
-          <div class="contact-item-title">Program</div>
-          <div class="contact-item-val" id="e-program">Luni – Vineri: 09:00 – 18:00<br>Sâmbătă: 09:00 – 14:00</div>
-        </div>
-      </div>
-      <div class="social-links">
-        <a href="https://www.facebook.com/motodrivingperformance/?locale=ro_RO" target="_blank" class="social-link">
-          <span>f</span> Facebook
-        </a>
-        <a href="https://www.instagram.com/motoskillschool/" target="_blank" class="social-link">
-          <span>📷</span> Instagram
-        </a>
-        <a href="https://www.waze.com/en-GB/live-map/directions/ro/bucuresti/bucuresti/motoskill-poligon-moto-bucuresti-or-scoala-moto-sector-2,-categoria-a,-a-1,a2?to=place.ChIJzZfm5tn4sUAR_y6qhS5-J78" target="_blank" class="social-link">
-          <span>🗺</span> Waze
-        </a>
+  <span class="eyebrow">Contact</span>
+  <h2 class="stitle" id="e-cont-title">Hai să vorbim<br>despre cursul tău!</h2>
+  <div class="cg">
+    <div class="cc-list">
+      <div class="cc"><div class="cc-icon">📍</div><div><div class="cc-lbl">Adresă</div><div class="cc-val" id="e-adr">Șoseaua Electronicii Nr. 48<br>București, Sector 2 · Zona Baicului</div></div></div>
+      <div class="cc"><div class="cc-icon">📞</div><div><div class="cc-lbl">Telefon / WhatsApp</div><div class="cc-val"><a href="tel:+40752097369" id="e-tel">+40 752 097 369</a></div></div></div>
+      <div class="cc"><div class="cc-icon">📧</div><div><div class="cc-lbl">Email</div><div class="cc-val"><a href="mailto:rogin.liviu@gmail.com" id="e-mail">rogin.liviu@gmail.com</a></div></div></div>
+      <div class="cc"><div class="cc-icon">⏰</div><div><div class="cc-lbl">Program</div><div class="cc-val" id="e-prog">Luni – Vineri: 09:00 – 18:00<br>Sâmbătă: 09:00 – 14:00</div></div></div>
+      <div class="srow">
+        <a href="https://www.facebook.com/motodrivingperformance/?locale=ro_RO" target="_blank" class="sbtn">📘 Facebook</a>
+        <a href="https://www.instagram.com/motoskillschool/" target="_blank" class="sbtn">📸 Instagram</a>
+        <a href="https://www.waze.com/en-GB/live-map/directions/ro/bucuresti/bucuresti/motoskill-poligon-moto-bucuresti-or-scoala-moto-sector-2,-categoria-a,-a-1,a2?to=place.ChIJzZfm5tn4sUAR_y6qhS5-J78" target="_blank" class="sbtn">🗺️ Waze</a>
       </div>
     </div>
-    <div class="map-placeholder">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.0!2d26.12!3d44.44!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff99e4e6979d%3A0xbfbe7e292aa8af!2sMotoSkill%20Poligon%20Moto%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Locație MotoSkill București"
-      ></iframe>
+    <div class="map-w">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.5!2d26.1342!3d44.4456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff99e4e6979d%3A0xbfbe7e292aa8af!2s%C8%98oseaua%20Electronicii%2048%2C%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="MotoSkill — Șos. Electronicii 48"></iframe>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Moto<span>Skill</span></div>
-  <div class="footer-links">
-    <a href="#despre">Despre noi</a>
-    <a href="#cursuri">Cursuri</a>
+  <div class="flogo">Moto<em>Skill</em></div>
+  <div class="flinks">
+    <a href="#despre">Despre noi</a><a href="#cursuri">Categorii</a>
+    <a href="#steps">Cum funcționează</a><a href="#recenzii">Recenzii</a>
     <a href="#contact">Contact</a>
     <a href="https://www.facebook.com/motodrivingperformance/?locale=ro_RO" target="_blank">Facebook</a>
     <a href="https://www.instagram.com/motoskillschool/" target="_blank">Instagram</a>
   </div>
-  <div class="footer-copy">© 2025 MotoSkill · Toate drepturile rezervate</div>
+  <div class="fcopy">© 2025 MotoSkill · Șos. Electronicii 48 · Sector 2 · București</div>
 </footer>
 
-<!-- ═══ EDIT BUTTON ═══ -->
-<button id="edit-btn" onclick="togglePanel()">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-  </svg>
-  Editează site-ul
-</button>
+<!-- EDIT BUTTON -->
+<button id="ebtn" onclick="tp()">✏️ Editează site-ul</button>
 
-<!-- ═══ EDIT PANEL ═══ -->
-<div id="edit-panel">
-  <div class="panel-header">
-    <h3>Editor <span>MotoSkill</span></h3>
-    <button class="panel-close" onclick="togglePanel()">✕</button>
-  </div>
-  <div class="panel-body">
+<!-- EDIT PANEL -->
+<div id="epanel">
+  <div class="phdr"><h3>Editor <em>MotoSkill</em></h3><button class="pclose" onclick="tp()">✕</button></div>
+  <div class="pbody">
 
-    <div class="panel-section-title">🎬 SECȚIUNEA HERO (principală)</div>
-
-    <div class="edit-group">
-      <label class="edit-label">Badge deasupra titlului</label>
-      <input class="edit-input" id="f-hero-badge" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Titlu rând 1</label>
-      <input class="edit-input" id="f-hero-title1" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Titlu rând 2 (portocaliu)</label>
-      <input class="edit-input" id="f-hero-title2" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Subtitlu hero</label>
-      <textarea class="edit-textarea" id="f-hero-sub"></textarea>
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Text buton principal</label>
-      <input class="edit-input" id="f-btn1" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Text buton secundar</label>
-      <input class="edit-input" id="f-btn2" />
+    <div class="esect">🎬 VIDEO HERO</div>
+    <div style="background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.2);border-radius:8px;padding:1rem;font-size:.82rem;color:rgba(255,255,255,.62);line-height:1.72;">
+      <strong style="color:var(--orange)">Cum adaugi videoclipul tău:</strong><br>
+      1. Deschide index.html într-un editor de text (Notepad, VS Code)<br>
+      2. Caută comentariul <code style="color:var(--amber)">VIDEO HERO</code><br>
+      3. Adaugă: <code style="color:var(--amber)">&lt;video autoplay muted loop playsinline src="hero.mp4"&gt;&lt;/video&gt;</code><br>
+      4. Pune fișierul .mp4 în același folder cu index.html
     </div>
 
-    <div class="panel-divider"></div>
-    <div class="panel-section-title">📊 STATISTICI (bara portocalie)</div>
+    <div class="esep"></div><div class="esect">🏠 HERO</div>
+    <div class="egrp"><label class="elbl">Text badge (pill)</label><input class="einp" id="f-pill"/></div>
+    <div class="egrp"><label class="elbl">Titlu rând 1</label><input class="einp" id="f-t1"/></div>
+    <div class="egrp"><label class="elbl">Titlu rând 2 (gradient portocaliu)</label><input class="einp" id="f-t2"/></div>
+    <div class="egrp"><label class="elbl">Titlu rând 3</label><input class="einp" id="f-t3"/></div>
+    <div class="egrp"><label class="elbl">Subtitlu</label><textarea class="eta" id="f-sub"></textarea></div>
 
-    <div class="edit-group">
-      <label class="edit-label">Statistică 1 – Număr</label>
-      <input class="edit-input" id="f-stat1n" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Statistică 1 – Etichetă</label>
-      <input class="edit-input" id="f-stat1l" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Statistică 2 – Număr</label>
-      <input class="edit-input" id="f-stat2n" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Statistică 2 – Etichetă</label>
-      <input class="edit-input" id="f-stat2l" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Statistică 3 – Număr</label>
-      <input class="edit-input" id="f-stat3n" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Statistică 3 – Etichetă</label>
-      <input class="edit-input" id="f-stat3l" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Statistică 4 – Număr</label>
-      <input class="edit-input" id="f-stat4n" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Statistică 4 – Etichetă</label>
-      <input class="edit-input" id="f-stat4l" />
-    </div>
+    <div class="esep"></div><div class="esect">📊 STATISTICI</div>
+    <div class="egrp"><label class="elbl">Stat 1 – Număr</label><input class="einp" id="f-s1n"/></div>
+    <div class="egrp"><label class="elbl">Stat 1 – Etichetă</label><input class="einp" id="f-s1l"/></div>
+    <div class="egrp"><label class="elbl">Stat 3 – Număr (preț de la)</label><input class="einp" id="f-s3n"/></div>
+    <div class="egrp"><label class="elbl">Stat 3 – Etichetă</label><input class="einp" id="f-s3l"/></div>
 
-    <div class="panel-divider"></div>
-    <div class="panel-section-title">ℹ️ DESPRE NOI</div>
+    <div class="esep"></div><div class="esect">ℹ️ DESPRE NOI</div>
+    <div class="egrp"><label class="elbl">Titlu</label><input class="einp" id="f-dp-title"/></div>
+    <div class="egrp"><label class="elbl">Descriere</label><textarea class="eta" id="f-dp-body" style="min-height:120px"></textarea></div>
+    <div class="egrp"><label class="elbl">Nr. ani (badge)</label><input class="einp" id="f-dp-n"/></div>
 
-    <div class="edit-group">
-      <label class="edit-label">Titlu secțiune Despre noi</label>
-      <input class="edit-input" id="f-despre-title" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Text descriere</label>
-      <textarea class="edit-textarea" id="f-despre-body" style="min-height:120px"></textarea>
-    </div>
+    <div class="esep"></div><div class="esect">🎁 BANNER GRATUIT</div>
+    <div class="egrp"><label class="elbl">Titlu banner</label><input class="einp" id="f-bf-title"/></div>
+    <div class="egrp"><label class="elbl">Subtitlu banner</label><textarea class="eta" id="f-bf-sub"></textarea></div>
 
-    <div class="panel-divider"></div>
-    <div class="panel-section-title">🏍️ CURSURI – PREȚURI</div>
+    <div class="esep"></div><div class="esect">🏍️ PREȚURI</div>
+    <div class="egrp"><label class="elbl">Preț A1 (ex: 1.700)</label><input class="einp" id="f-a1-p"/></div>
+    <div class="egrp"><label class="elbl">Notă preț A2</label><input class="einp" id="f-a2-p"/></div>
+    <div class="egrp"><label class="elbl">Preț A (ex: 1.700)</label><input class="einp" id="f-a-p"/></div>
 
-    <div class="edit-group">
-      <label class="edit-label">Preț / info Categoria A1</label>
-      <input class="edit-input" id="f-a1-pret" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Preț / info Categoria A2</label>
-      <input class="edit-input" id="f-a2-pret" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Preț / info Categoria A</label>
-      <input class="edit-input" id="f-a-pret" />
-    </div>
+    <div class="esep"></div><div class="esect">📞 CONTACT</div>
+    <div class="egrp"><label class="elbl">Adresă</label><input class="einp" id="f-adr"/></div>
+    <div class="egrp"><label class="elbl">Telefon</label><input class="einp" id="f-tel"/></div>
+    <div class="egrp"><label class="elbl">Email</label><input class="einp" id="f-mail"/></div>
+    <div class="egrp"><label class="elbl">Program</label><textarea class="eta" id="f-prog"></textarea></div>
 
-    <div class="panel-divider"></div>
-    <div class="panel-section-title">📞 CONTACT</div>
-
-    <div class="edit-group">
-      <label class="edit-label">Adresă</label>
-      <input class="edit-input" id="f-adresa" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Telefon (text afișat)</label>
-      <input class="edit-input" id="f-telefon" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Email (text afișat)</label>
-      <input class="edit-input" id="f-email" />
-    </div>
-    <div class="edit-group">
-      <label class="edit-label">Program</label>
-      <textarea class="edit-textarea" id="f-program"></textarea>
-    </div>
-
-    <button class="panel-save" onclick="saveEdits()">💾 Salvează toate modificările</button>
-    <button class="panel-save" style="background:var(--dark2);color:var(--grey);margin-top:-0.5rem" onclick="exportHTML()">📥 Descarcă fișierul HTML actualizat</button>
-
+    <button class="psave" onclick="saveAll()">💾 Salvează modificările</button>
+    <button class="psave-g" onclick="exportHTML()">📥 Descarcă HTML actualizat</button>
   </div>
 </div>
 
-<div class="save-toast" id="save-toast">✓ Modificările au fost salvate!</div>
+<div class="toast" id="toast">✓ Salvat!</div>
 
 <script>
-  /* ─── NAVBAR SCROLL ─── */
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  /* ─── MOBILE MENU ─── */
-  document.getElementById('hamburger').addEventListener('click', () => {
-    document.getElementById('mobile-nav').classList.toggle('open');
-  });
-  function closeMobileNav() {
-    document.getElementById('mobile-nav').classList.remove('open');
-  }
-
-  /* ─── RECENZII SCROLL ─── */
-  function scrollRecenzii(dir) {
-    const track = document.getElementById('recenzii-track');
-    track.scrollBy({ left: dir * 420, behavior: 'smooth' });
-  }
-
-  /* ─── EDIT PANEL ─── */
-  const FIELDS = {
-    'hero-badge': 'e-hero-badge',
-    'hero-title1': 'e-hero-title1',
-    'hero-title2': 'e-hero-title2',
-    'hero-sub':   'e-hero-sub',
-    'btn1':       'e-btn1',
-    'btn2':       'e-btn2',
-    'stat1n':     'e-stat1n',
-    'stat1l':     'e-stat1l',
-    'stat2n':     'e-stat2n',
-    'stat2l':     'e-stat2l',
-    'stat3n':     'e-stat3n',
-    'stat3l':     'e-stat3l',
-    'stat4n':     'e-stat4n',
-    'stat4l':     'e-stat4l',
-    'despre-title':'e-despre-title',
-    'despre-body': 'e-despre-body',
-    'a1-pret':    'e-a1-pret',
-    'a2-pret':    'e-a2-pret',
-    'a-pret':     'e-a-pret',
-    'adresa':     'e-adresa',
-    'telefon':    'e-telefon',
-    'email':      'e-email',
-    'program':    'e-program',
+  /* Navbar */
+  window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>60)});
+  /* Mobile nav */
+  document.getElementById('ham').addEventListener('click',()=>{document.getElementById('mnav').classList.toggle('open')});
+  function cmn(){document.getElementById('mnav').classList.remove('open')}
+  /* Reviews */
+  function sr(d){document.getElementById('rt').scrollBy({left:d*390,behavior:'smooth'})}
+  /* Edit panel */
+  const F={
+    'pill':'e-pill','t1':'e-t1','t2':'e-t2','t3':'e-t3','sub':'e-sub',
+    's1n':'e-s1n','s1l':'e-s1l','s3n':'e-s3n','s3l':'e-s3l',
+    'dp-title':'e-dp-title','dp-body':'e-dp-body','dp-n':'e-dp-n',
+    'bf-title':'e-bf-title','bf-sub':'e-bf-sub',
+    'a1-p':'e-a1-p','a2-p':'e-a2-p','a-p':'e-a-p',
+    'adr':'e-adr','tel':'e-tel','mail':'e-mail','prog':'e-prog'
   };
-
-  function togglePanel() {
-    const panel = document.getElementById('edit-panel');
-    const isOpen = panel.classList.toggle('open');
-    if (isOpen) loadFields();
-  }
-
-  function loadFields() {
-    for (const [fKey, eKey] of Object.entries(FIELDS)) {
-      const el = document.getElementById(eKey);
-      const fi = document.getElementById('f-' + fKey);
-      if (el && fi) fi.value = el.innerText || el.textContent;
-    }
-    // load saved from localStorage if exists
-    const saved = localStorage.getItem('motoskill-content');
-    if (saved) {
-      const data = JSON.parse(saved);
-      for (const [k, v] of Object.entries(data)) {
-        const fi = document.getElementById('f-' + k);
-        if (fi) fi.value = v;
+  function tp(){
+    const p=document.getElementById('epanel');
+    if(p.classList.toggle('open')){
+      const sv=JSON.parse(localStorage.getItem('ms2')||'{}');
+      for(const[k,v] of Object.entries(F)){
+        const fi=document.getElementById('f-'+k),el=document.getElementById(v);
+        if(fi&&el) fi.value=sv[k]??(el.innerText||el.textContent).trim();
       }
     }
   }
-
-  function saveEdits() {
-    const data = {};
-    for (const [fKey, eKey] of Object.entries(FIELDS)) {
-      const fi = document.getElementById('f-' + fKey);
-      const el = document.getElementById(eKey);
-      if (fi && el) {
-        el.innerText = fi.value;
-        data[fKey] = fi.value;
-      }
+  function saveAll(){
+    const d={};
+    for(const[k,v] of Object.entries(F)){
+      const fi=document.getElementById('f-'+k),el=document.getElementById(v);
+      if(fi&&el){el.innerText=fi.value;d[k]=fi.value;}
     }
-    localStorage.setItem('motoskill-content', JSON.stringify(data));
-    // Show toast
-    const toast = document.getElementById('save-toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
+    localStorage.setItem('ms2',JSON.stringify(d));
+    const t=document.getElementById('toast');t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2600);
   }
-
-  function exportHTML() {
-    saveEdits();
-    const html = document.documentElement.outerHTML;
-    const blob = new Blob([html], { type: 'text/html' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'motoskill-index.html';
-    a.click();
+  function exportHTML(){
+    saveAll();
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([document.documentElement.outerHTML],{type:'text/html'}));
+    a.download='motoskill-index.html';a.click();
   }
-
-  // Load saved content on page load
-  window.addEventListener('load', () => {
-    const saved = localStorage.getItem('motoskill-content');
-    if (saved) {
-      const data = JSON.parse(saved);
-      for (const [fKey, eKey] of Object.entries(FIELDS)) {
-        if (data[fKey]) {
-          const el = document.getElementById(eKey);
-          if (el) el.innerText = data[fKey];
-        }
-      }
+  /* Restore on load */
+  addEventListener('load',()=>{
+    const d=JSON.parse(localStorage.getItem('ms2')||'{}');
+    for(const[k,v] of Object.entries(F)){
+      if(d[k]){const el=document.getElementById(v);if(el)el.innerText=d[k];}
     }
+  });
+  /* Scroll reveal */
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}}),{threshold:.1});
+  document.querySelectorAll('.ccard,.scard,.fc,.rcard,.ditem,.cc').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(22px)';
+    el.style.transition='opacity .55s ease,transform .55s ease';
+    obs.observe(el);
   });
 </script>
 </body>
